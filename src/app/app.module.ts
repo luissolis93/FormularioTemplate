@@ -4,13 +4,19 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { FormularioTemplateComponent } from './components/formulario-template/formulario-template.component';
 
+
+//Formularios
+
+import { ReactiveFormsModule} from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
     FormularioTemplateComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,10 +1,22 @@
 <div class="container">
+    <div class="row">
         <h1>Formularios</h1>
+        <div [formGroup]="formulario" class="col-12">
         <div class="row">
             <div class="col-12">
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input id="name" class="form-control" type="text" name="">
+                    <label for="name">Nombre</label>
+                    <input id="name" formControlName="nombre" 
+                    class="form-control" [ngClass]="{'is-invalid': formulario.get('nombre').errors && 
+                                                                   formulario.get('nombre').touched,
+                                                                
+                                                                   'is-valid': !formulario.get('nombre').errors && 
+                                                                   formulario.get('nombre').touched
+                                                                
+                                                                
+                                                                }" type="text" name="">
+                    <div class="invalid-feedback d-block" *ngIf="formulario.controls.nombre.errors?.required && formulario.controls.nombre.touched">Nombre es necesario</div>
+                    <div class="invalid-feedback d-block" *ngIf="formulario.controls.nombre.errors?.minlength">Minimo 5 caracteres</div>
                 </div>
             </div>
         </div>
@@ -12,21 +24,41 @@
             <div class="col-12">
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input id="email" class="form-control" type="text" name="">
+                    <input id="email" formControlName="email" class="form-control"[ngClass]="{'is-invalid': formulario.get('email').errors && 
+                                                                                                            formulario.get('email').touched,
+                 
+                                                                                                           'is-valid': !formulario.get('email').errors && 
+                                                                                                            formulario.get('email').touched
+                 
+                 
+                 }" type="text" name="">
+                    <div class="invalid-feedback d-block" *ngIf="formulario.controls.email.errors?.required && formulario.controls.email.touched">Correo es necesario</div>
+                    <div class="invalid-feedback d-block" *ngIf="formulario.controls.email.errors?.pattern">Formato de correo es correo@correo.com</div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
                 <div class="form-group">
-                    <label for="Mensaje">Mensaje</label>
-                    <textarea id="Mensaje" class="form-control" name="" rows="3"></textarea>
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" formControlName="mensaje" class="form-control"[ngClass]="{'is-invalid': formulario.get('mensaje').errors && 
+                                                                                                                   formulario.get('mensaje').touched,
+                 
+                                                                                                                   'is-valid': !formulario.get('mensaje').errors && 
+                                                                                                                   formulario.get('mensaje').touched
+                 
+                 
+                 }" name="" rows="3"></textarea>
+                    <div class="invalid-feedback d-block" *ngIf="formulario.controls.mensaje.errors?.required && formulario.controls.mensaje.touched">Notas son necesario</div>
+                    <div class="invalid-feedback d-block" *ngIf="formulario.controls.mensaje.errors?.minlength">Minimo 15 caracteres</div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
-                <button type="button" name="" id="bntMessage" class="btn btn-primary btn-lg btn-block">Enviar Mensaje</button>
+                <button type="button" *ngIf="formulario.valid" (click)="verEstadoFormulario()" name="" id="bntMessage" class="btn btn-outline-success btn-lg btn-block">Enviar Mensaje</button>
             </div>
         </div>
     </div>
+    </div>
+</div>
